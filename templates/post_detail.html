@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <article class="bg-white p-6 rounded-lg shadow-lg mb-4">
+    <h2 class="text-3xl font-bold mb-2">{{ object.title }}</h2>
+    <p class="text-gray-600 mb-4">Por: {{ object.author }}</p>
+    <div class="prose max-w-none">{{ object.body|linebreaks }}</div>
+  </article>
+
+  <div class="mb-6">
+    {% if object.author == user %}
+      <a href="{% url 'post_edit' pk=object.pk %}" class="text-sm bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded mr-2">Editar</a>
+      <a href="{% url 'post_delete' pk=object.pk %}" class="text-sm bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Eliminar</a>
+      <span class="mx-2 text-gray-400">|</span>
+    {% endif %}
+    <a href="{% url 'home' %}" class="text-blue-500 hover:text-blue-700">← Volver a la lista</a>
+  </div>
+{% endblock content %}
